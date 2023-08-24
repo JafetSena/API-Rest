@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Fetch</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="APIFetch.css">
+</head>
+<body onload="Limpiar()">
+    <div>
+        <p class="cartel">Consulta a API con Promesa</p>
+        <button id="btnPromesa">Consulta Promesa</button>
+        <input type="text" id="txtPromesa" class="caja" placeholder="Aquí aparecerá un dato sobre los gatos">
+    </div>
+    <div>   
+        <p class="cartel">Consulta a API con Fetch</p>
+        <button id="btnConsulta">Consulta Fetch</button>
+        <input type="text" id="txtFetch" class="caja" placeholder="Aquí aparecerá un dato sobre los gatos">
+    </div>
+    <div>
+        <p class="cartel">Consulta a API con XMLHttpRequest</p>
+        <button id="btnXML">Consulta XML</button>
+        <input type="text" id="txtXML" class="caja" placeholder="Aquí aparecerá un dato sobre los gatos">
+    </div>
+    <div>
+        <p class="cartel">Consulta a API con JQuery</p>
+        <button id="btnJQ">Consulta JQuery</button>
+        <input type="text" id="txtJQ" class="caja" placeholder="Aquí aparecerá un dato sobre los gatos">
+    </div>
+    <div>
+        <p class="cartel">Consulta a API con Axios</p>
+        <button id="btnAxios">Consulta Axios</button>
+        <input type="text" id="txtAxios" class="caja" placeholder="Aquí aparecerá un dato sobre los gatos">
+    </div>
+    <script>//Agregar botones para hacer la consulta de diferentes formas (ASYNC, Promesa, JQUERY, AXIOS, XML)?
+        //API Fetch
+        document.getElementById("btnConsulta").addEventListener("click", async function(){
+            let response = await fetch("https://catfact.ninja/fact", { 
+                method: "GET",
+            });
+
+            let data = await response.json();
+            console.log("FETCH: ");
+            console.log(data);
+
+            document.getElementById("txtFetch").value = data.fact;
+        })
+        //XMLHttpRequest
+        document.getElementById("btnXML").addEventListener("click", function(){
+            let data = null;
+
+            const xhr = new XMLHttpRequest();
+            xhr.withCredentials = false;
+
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === this.DONE) {
+                    console.log("XMLHttpRequest: ");
+                    data = JSON.parse(this.responseText);
+                    console.log(data);
+                    document.getElementById("txtXML").value = data.fact;
+                }
+            });
+            xhr.open("GET", "https://catfact.ninja/fact");
+
+            xhr.send(data);
+        })
+        //Promise
+        document.getElementById("btnPromesa").addEventListener("click", function(){
+            const setting = {
+                "method": "GET"
+            }
+            fetch("https://catfact.ninja/fact", setting)    //Hace la petición
+                .then(response => {
+                    return response.json();
+            })
+            .then(resp => {                                 //Muestra el dato en el input
+                console.log("PROMESA: ");
+                console.log(resp);
+                document.getElementById("txtPromesa").value = resp.fact;
+            })
+            .catch(error => {                               //En caso de error, lo maneja
+                console.log("Error en la petición: ", error);
+            })
+        })
+        //JQuery
+        document.getElementById("btnJQ").addEventListener("click", function() {
+            const settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://catfact.ninja/fact",
+                "method": "GET"
+            };
+
+            $.ajax(settings).done(function (response) {
+                console.log("JQuery: ");
+                console.log(response);
+                document.getElementById("txtJQ").value = response.fact;
+            });
+        })
+        //Axios
+        document.getElementById("btnAxios").addEventListener("click", async function(){
+            let reqOptions = {
+                url: "https://catfact.ninja/fact",
+                method: "GET"
+            }
+            
+            let response = await axios.request(reqOptions);
+            console.log("AXIOS: ");
+            console.log(response);
+            document.getElementById("txtAxios").value = response.data.fact;
+        })
+    </script>
+</body>
+</html>

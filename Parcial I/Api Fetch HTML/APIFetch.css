@@ -1,0 +1,14 @@
+* {
+    box-sizing: border-box;
+    margin: 5px;
+}
+
+.cartel {
+    color: cadetblue;
+    text-align: center;
+}
+
+.caja {
+    margin-bottom: 25px;
+    width: 85%;
+}
