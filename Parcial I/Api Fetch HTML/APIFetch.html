@@ -11,28 +11,31 @@
 <body onload="Limpiar()">
     <div>
         <p class="cartel">Consulta a API con Promesa</p>
-        <button id="btnPromesa">Consulta Promesa</button>
+        <button id="btnPromesa" class="boton">Consulta Promesa</button>
         <input type="text" id="txtPromesa" class="caja" placeholder="Aquí aparecerá un dato sobre los gatos">
     </div>
     <div>   
         <p class="cartel">Consulta a API con Fetch</p>
-        <button id="btnConsulta">Consulta Fetch</button>
+        <button id="btnConsulta" class="boton">Consulta Fetch</button>
         <input type="text" id="txtFetch" class="caja" placeholder="Aquí aparecerá un dato sobre los gatos">
     </div>
     <div>
         <p class="cartel">Consulta a API con XMLHttpRequest</p>
-        <button id="btnXML">Consulta XML</button>
+        <button id="btnXML" class="boton">Consulta XML</button>
         <input type="text" id="txtXML" class="caja" placeholder="Aquí aparecerá un dato sobre los gatos">
     </div>
     <div>
         <p class="cartel">Consulta a API con JQuery</p>
-        <button id="btnJQ">Consulta JQuery</button>
+        <button id="btnJQ" class="boton">Consulta JQuery</button>
         <input type="text" id="txtJQ" class="caja" placeholder="Aquí aparecerá un dato sobre los gatos">
     </div>
     <div>
         <p class="cartel">Consulta a API con Axios</p>
-        <button id="btnAxios">Consulta Axios</button>
+        <button id="btnAxios" class="boton">Consulta Axios</button>
         <input type="text" id="txtAxios" class="caja" placeholder="Aquí aparecerá un dato sobre los gatos">
+    </div>
+    <div>
+        <center><button id="btnLimpiar" onclick="Limpiar()" class="boton">Limpiar Campos</button></center>
     </div>
     <script>//Agregar botones para hacer la consulta de diferentes formas (ASYNC, Promesa, JQUERY, AXIOS, XML)?
         //API Fetch
@@ -111,6 +114,13 @@
             console.log(response);
             document.getElementById("txtAxios").value = response.data.fact;
         })
+
+        function Limpiar() {
+            textboxes = document.getElementsByClassName("caja");
+            for (var i = 0; i < textboxes.length; i++){
+                textboxes[i].value = "";
+            }
+        }
     </script>
 </body>
 </html>

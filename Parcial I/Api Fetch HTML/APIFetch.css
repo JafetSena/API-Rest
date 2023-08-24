@@ -1,14 +1,27 @@
 * {
     box-sizing: border-box;
     margin: 5px;
+    background-color:azure;
 }
 
 .cartel {
-    color: cadetblue;
+    color:cornflowerblue;
     text-align: center;
+    font-style: italic;
 }
 
 .caja {
     margin-bottom: 25px;
     width: 85%;
+    background-color: whitesmoke;
+}
+
+.boton {
+    background-color: white;
+}
+
+#btnLimpiar {
+    width: 20%;
+    height: 40px;
+    margin-top: 40px;
 }
