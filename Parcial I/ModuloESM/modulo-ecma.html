@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modulo Ecma</title>
+</head>
+<body>
+    <div>
+        <label for="cargaSincrona">Carga Sincrona del módulo importado: </label>
+        <br>
+        <input type="text" class="caja" id="cargaSincrona" size="190px">
+    </div>
+    <br>
+    <div>
+        <label for="cargaAsincrona">Carga Asíncrona del módulo importado: </label>
+        <button id="btnFuncion">Función Asíncrona</button>
+        <br>
+        <input type="text" class="caja" id="cargaAsincrona" size="190px">
+    </div>
+</body>
+<script type="module">
+    import { ObtenerFraseInicial } from './modulo.js'; 
+    console.log(ObtenerFraseInicial());
+    document.getElementById("cargaSincrona").value = ObtenerFraseInicial();
+
+    document.getElementById("btnFuncion").addEventListener("click", async function() {
+        const { ObtenerFrase } = await import('./modulo.js')
+        ObtenerFrase().then(resp => {
+            document.getElementById("cargaAsincrona").value = resp;
+        });
+    });
+</script>
+</html>
