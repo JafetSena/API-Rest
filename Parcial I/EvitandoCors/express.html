@@ -18,5 +18,9 @@
                     .then(dato => console.log(dato))
         });
     </script>
+    <script>
+        let funcionRetorno = function(data) { console.log(data) }   //Evita el CORS gracias a la etiqueta script
+    </script>       
+    <script src="http://localhost:8080/alumnos?callback=funcionRetorno"></script>
 </body>
 </html>
