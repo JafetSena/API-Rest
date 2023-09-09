@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peticion Con JSON Padding</title>
+</head>
+<body>
+    <script>
+        let funcionRetorno = function(data) { console.log(data) }   //Evita el CORS gracias a la etiqueta script
+    </script>
+    <script src="http://localhost:8080/alumnos?callback=funcionRetorno"></script>
+</body>
+</html>
