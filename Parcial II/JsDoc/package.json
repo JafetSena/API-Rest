@@ -1,0 +1,17 @@
+{
+  "name": "modulo-paquete-npm",
+  "version": "1.0.1",
+  "description": "Ejercicio de creación de módulos de JavaScript",
+  "main": "modulo.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "doc": "jsdoc -c jsdoc.json --readme README.MD"
+  },
+  "keywords": [],
+  "author": "Jafet Sena",
+  "license": "ISC",
+  "Type": "module",
+  "devDependencies": {
+    "clean-jsdoc-theme": "^4.2.13"
+  }
+}
